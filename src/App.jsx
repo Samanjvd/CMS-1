@@ -7,13 +7,13 @@ function App() {
   let router = useRoutes(routes);
 
   return (
-    <div className="size-full">
+    <>
       <TopBar />
-      <div className="px-5 pt-6 flex">
+      <div className="px-5 flex">
         <SideBar />
         {router}
       </div>
-    </div>
+    </>
   );
 }
 

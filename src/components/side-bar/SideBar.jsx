@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
-    <div className="sticky top-12 flex-1 bg-white h-[calc(100% - 50px)] ">
+    <div className="sticky top-13 flex-1 bg-white h-[calc(100vh-50px)]">
       <div>
         <div>
           <h5 className="text-xs text-gray-400 mb-1.5">Dashboard</h5>

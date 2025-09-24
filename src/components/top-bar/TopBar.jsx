@@ -5,7 +5,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 const TopBar = () => {
   return (
-    <div className="w-full h-12.5 bg-white sticky top-0 z-100">
+    <div className="w-full h-13 bg-white sticky top-0 z-100">
       <div className="h-full flex items-center justify-between px-5">
         <div className="text-3xl font-extrabold font-nunito text-blue-800 cursor-pointer">
           AdminPanel ❤
