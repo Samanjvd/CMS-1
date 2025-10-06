@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <TopBar />
-      <div className="px-5 flex">
+      <div className="size-full px-5 flex">
         <SideBar />
         {router}
       </div>
