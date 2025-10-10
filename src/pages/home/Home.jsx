@@ -3,22 +3,37 @@ import Featuer from "../../components/featuers/Featuer";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import WidgetSm from "../../components/widgetSm/WidgetSm";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Home() {
-  const data = [
-    { name: "Jan", active_User: 400, sale: 100 },
-    { name: "Feb", active_User: 300, sale: 180 },
-    { name: "Mar", active_User: 200, sale: 300 },
-    { name: "Apr", active_User: 278, sale: 400 },
-    { name: "May", active_User: 189, sale: 150 },
-    { name: "Jun", active_User: 239, sale: 100 },
-    { name: "Jul", active_User: 349, sale: 50 },
-    { name: "Aug", active_User: 200, sale: 680 },
-    { name: "Sep", active_User: 100, sale: 280 },
-    { name: "Oct", active_User: 320, sale: 250 },
-    { name: "Nov", active_User: 280, sale: 180 },
-    { name: "Dec", active_User: 450, sale: 100 },
-  ];
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(
+          "https://wgbubvtagllosaelppld.supabase.co/rest/v1/data-chart?select=*",
+          {
+            headers: {
+              apikey:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndnYnVidnRhZ2xsb3NhZWxwcGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU4NTk1MzYsImV4cCI6MjA3MTQzNTUzNn0.pn-yLO_lqamjF5rzKUbVKzfB_Y9aOSCDX9laoBnYHn0",
+              Authorization:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndnYnVidnRhZ2xsb3NhZWxwcGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU4NTk1MzYsImV4cCI6MjA3MTQzNTUzNn0.pn-yLO_lqamjF5rzKUbVKzfB_Y9aOSCDX9laoBnYHn0",
+            },
+          }
+        );
+        setData(res.data);
+      } catch (err) {
+        console.error("Error Fetching data:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   const lineInfo = [
     {
@@ -38,7 +53,16 @@ function Home() {
   return (
     <div className="flex-[5]">
       <Featuer />
-      <Chart data={data} title={"User Analytics"} lineInfo={lineInfo} />
+
+      {loading ? (
+        <div className="flex justify-center items-center">
+          <div className="size-6 mt-8">
+            <div className="spinner" />
+          </div>
+        </div>
+      ) : (
+        <Chart data={data} title={"User Analytics"} lineInfo={lineInfo} />
+      )}
       <div className="flex m-5">
         <WidgetSm />
       </div>
