@@ -1,5 +1,5 @@
 import Chart from "../../components/charts/chart";
-import Featuer from "../../components/featuers/Featuer";
+import Feature from "../../components/features/Feature";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import WidgetSm from "../../components/widgetSm/WidgetSm";
@@ -52,7 +52,7 @@ function Home() {
 
   return (
     <div className="flex-[5]">
-      <Featuer />
+      <Feature />
 
       {loading ? (
         <div className="flex justify-center items-center">

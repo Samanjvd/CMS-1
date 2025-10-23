@@ -1,7 +1,7 @@
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
-const Featuer = () => {
+const Feature = () => {
   return (
     <div className="w-full flex justify-between mx-4">
       <div className="flex-1 mx-5 px-8 rounded-xl shadow-custom">
@@ -41,4 +41,4 @@ const Featuer = () => {
   );
 };
 
-export default Featuer;
+export default Feature;
