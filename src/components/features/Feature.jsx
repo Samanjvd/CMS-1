@@ -3,8 +3,8 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 const Feature = () => {
   return (
-    <div className="w-full flex justify-between mx-4">
-      <div className="flex-1 mx-5 px-8 rounded-xl shadow-custom">
+    <div className="w-full flex justify-between mx-4 pl-2 pr-12">
+      <div className="w-full max-w-56 flex-1 mx-5 p-4 rounded-xl shadow-custom">
         <span className="text-xl text-gray-700">Revanue</span>
         <div className="flex items-center my-2.5">
           <span className="text-2xl font-semibold">$2,415</span>
@@ -15,7 +15,7 @@ const Feature = () => {
         </div>
         <span className="text-sm text-gray-400">Compared to last month</span>
       </div>
-      <div className="flex-1 mx-5 px-8 rounded-xl shadow-custom">
+      <div className="w-full max-w-56 flex-1 mx-5  p-4 rounded-xl shadow-custom">
         <span className="text-xl text-gray-700">Sales</span>
         <div className="flex items-center my-2.5">
           <span className="text-2xl font-semibold">$4,415</span>
@@ -26,7 +26,7 @@ const Feature = () => {
         </div>
         <span className="text-sm text-gray-400">Compared to last month</span>
       </div>
-      <div className="flex-1 mx-5 px-8 rounded-xl shadow-custom">
+      <div className="w-full max-w-56 flex-1 mx-5  p-4 rounded-xl shadow-custom">
         <span className="text-xl text-gray-700">Cost</span>
         <div className="flex items-center my-2.5">
           <span className="text-2xl font-semibold">$2,225</span>

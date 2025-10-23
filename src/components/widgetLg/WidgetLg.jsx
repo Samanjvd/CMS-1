@@ -48,17 +48,17 @@ function WidgetLg() {
         <table className="w-full border-separate border-spacing-y-3">
           <thead>
             <tr>
-              <th className="text-center">Customer</th>
-              <th className="text-center">Date</th>
-              <th className="text-center">Amount</th>
-              <th className="text-center">Status</th>
+              <th className="text-start">Customer</th>
+              <th className="text-start">Date</th>
+              <th className="text-start">Amount</th>
+              <th className="text-start">Status</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => (
-              <tr key={item.id} className="text-sm w-full ">
+              <tr key={item.id} className="text-sm w-full">
                 <td className="text-center">
-                  <div className="flex items-center justify-center gap-3">
+                  <div className="flex items-center  gap-3">
                     <img
                       className="size-10 rounded-full object-cover"
                       src={item.img}
@@ -67,9 +67,9 @@ function WidgetLg() {
                     <span>{item.name}</span>
                   </div>
                 </td>
-                <td className="font-light text-center">{item.date}</td>
-                <td className="font-light text-center">{`$${item.amount}`}</td>
-                <td className="py-1 px-1.5 rounded-xs flex justify-center">
+                <td className="font-light ">{item.date}</td>
+                <td className="font-light ">{`$${item.amount}`}</td>
+                <td className="rounded-xs flex ">
                   <button
                     className={`w-full max-w-20 py-1 rounded-md text-sm font-medium cursor-pointer ${
                       statusStyles[item.status] || ""
