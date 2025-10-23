@@ -3,6 +3,7 @@ import Feature from "../../components/features/Feature";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import WidgetSm from "../../components/widgetSm/WidgetSm";
+import WidgetLg from "../../components/widgetLg/WidgetLg";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -55,16 +56,15 @@ function Home() {
       <Feature />
 
       {loading ? (
-        <div className="flex justify-center items-center">
-          <div className="size-6 mt-8">
-            <div className="spinner" />
-          </div>
+        <div className="flex justify-center items-center py-10">
+          <div className="size-6 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
         </div>
       ) : (
         <Chart data={data} title={"User Analytics"} lineInfo={lineInfo} />
       )}
       <div className="flex m-5">
         <WidgetSm />
+        <WidgetLg />
       </div>
     </div>
   );

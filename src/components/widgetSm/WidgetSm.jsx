@@ -37,10 +37,8 @@ const WidgetSm = () => {
       <span className="text-xl font-normal">New Join Members</span>
       <ul>
         {loading ? (
-          <div className="flex justify-center items-center">
-            <div className="size-6 mt-8">
-              <div className="spinner" />
-            </div>
+          <div className="flex justify-center items-center py-10">
+            <div className="size-6 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
           </div>
         ) : (
           data.map((user) => (
