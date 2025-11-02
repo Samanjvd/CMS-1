@@ -3,7 +3,7 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 const Feature = () => {
   return (
-    <div className="w-full flex justify-between mx-4 pl-2 pr-12">
+    <div className="w-full flex justify-between mx-4 pl-18 pr-24">
       <div className="w-full max-w-56 flex-1 mx-5 p-4 rounded-xl shadow-custom">
         <span className="text-xl text-gray-700">Revanue</span>
         <div className="flex items-center my-2.5">
