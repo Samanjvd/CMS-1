@@ -1,7 +1,138 @@
-import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { DataGrid } from "@mui/x-data-grid";
+import { Link } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 function Products() {
-  return <div>Products</div>;
+  const [productData, setProductData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  async function fetchData() {
+    try {
+      const res = await axios.get(
+        "https://wgbubvtagllosaelppld.supabase.co/rest/v1/product?select=*",
+        {
+          headers: {
+            apikey:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndnYnVidnRhZ2xsb3NhZWxwcGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU4NTk1MzYsImV4cCI6MjA3MTQzNTUzNn0.pn-yLO_lqamjF5rzKUbVKzfB_Y9aOSCDX9laoBnYHn0",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndnYnVidnRhZ2xsb3NhZWxwcGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU4NTk1MzYsImV4cCI6MjA3MTQzNTUzNn0.pn-yLO_lqamjF5rzKUbVKzfB_Y9aOSCDX9laoBnYHn0",
+          },
+        }
+      );
+      setProductData(res.data);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(
+        `https://wgbubvtagllosaelppld.supabase.co/rest/v1/product?id=eq.${id}`,
+        {
+          headers: {
+            apikey:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndnYnVidnRhZ2xsb3NhZWxwcGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU4NTk1MzYsImV4cCI6MjA3MTQzNTUzNn0.pn-yLO_lqamjF5rzKUbVKzfB_Y9aOSCDX9laoBnYHn0",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndnYnVidnRhZ2xsb3NhZWxwcGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU4NTk1MzYsImV4cCI6MjA3MTQzNTUzNn0.pn-yLO_lqamjF5rzKUbVKzfB_Y9aOSCDX9laoBnYHn0",
+          },
+        }
+      );
+      await fetchData();
+    } catch (err) {
+      console.error("Error deleting row:", err);
+    }
+  };
+
+  const columns = [
+    { field: "displayId", headerName: "ID", width: 90 },
+    {
+      field: "title",
+      headerName: "Title",
+      width: 250,
+      renderCell: (product) => {
+        return (
+          <>
+            <Link to={`/product/${product.row.id}`}>
+              <div className="flex items-center gap-3">
+                <img
+                  src={product.row.avatar}
+                  className="size-10 rounded-full object-cover"
+                />
+                <span>{product.row.title}</span>
+              </div>
+            </Link>
+          </>
+        );
+      },
+    },
+    {
+      field: "price",
+      headerName: "Price",
+      width: 120,
+    },
+    {
+      field: "actions",
+      headerName: "Actions",
+      renderCell: (product) => {
+        return (
+          <div className="flex justify-between items-center px-7">
+            <Link to={`/product/${product.row.id}`}>
+              <button>
+                <EditIcon className="text-green-900 p-0.5 rounded cursor-pointer hover:bg-green-100" />
+              </button>
+            </Link>
+
+            <DeleteIcon
+              className="text-red-900 p-0.5 rounded cursor-pointer hover:bg-red-100"
+              onClick={() => {
+                handleDelete(product.row.id);
+              }}
+            />
+          </div>
+        );
+      },
+      width: 150,
+    },
+  ];
+
+  return (
+    <>
+      {loading ? (
+        <div className="w-full flex justify-center items-center py-10">
+          <div className="size-6 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+        </div>
+      ) : (
+        <div className="flex-[1] h-fit mt-4 flex justify-start">
+          <DataGrid
+            rows={productData.map((item, index) => ({
+              ...item,
+              displayId: index + 1,
+            }))}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 4,
+                },
+              },
+            }}
+            pageSizeOptions={[5]}
+            disableRowSelectionOnClick
+          />
+        </div>
+      )}
+    </>
+  );
 }
 
 export default Products;

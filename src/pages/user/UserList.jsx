@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -55,7 +54,7 @@ function UserList() {
   };
 
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "displayId", headerName: "ID", width: 90 },
     {
       field: "user",
       headerName: "User",
@@ -63,7 +62,7 @@ function UserList() {
       renderCell: (user) => {
         return (
           <>
-            <Link to="/">
+            <Link to={`/user/${user.row.id}`}>
               <div className="flex items-center gap-3">
                 <img
                   src={user.row.avatar}
@@ -94,10 +93,10 @@ function UserList() {
     {
       field: "actions",
       headerName: "Actions",
-      renderCell: (params) => {
+      renderCell: (user) => {
         return (
           <div className="flex justify-between items-center px-7">
-            <Link to={`/user/${params.row.id}`}>
+            <Link to={`/user/${user.row.id}`}>
               <button>
                 <EditIcon className="text-green-900 p-0.5 rounded cursor-pointer hover:bg-green-100" />
               </button>
@@ -106,7 +105,7 @@ function UserList() {
             <DeleteIcon
               className="text-red-900 p-0.5 rounded cursor-pointer hover:bg-red-100"
               onClick={() => {
-                handleDelete(params.row.id);
+                handleDelete(user.row.id);
               }}
             />
           </div>
@@ -125,7 +124,10 @@ function UserList() {
       ) : (
         <div className="flex-[4] h-fit mt-4">
           <DataGrid
-            rows={data}
+            rows={data.map((item, index) => ({
+              ...item,
+              displayId: index + 1,
+            }))}
             columns={columns}
             initialState={{
               pagination: {

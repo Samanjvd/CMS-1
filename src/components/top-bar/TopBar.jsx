@@ -28,9 +28,9 @@ const TopBar = () => {
           </div>
           <div className="size-10 flex items-center justify-center cursor-pointer shadow-xl/20 rounded-full">
             <img
-              src="images\profile.jfif"
+              src="images\profile7.jfif"
               alt="profile"
-              className="rounded-full"
+              className="rounded-full object-cover"
             />
             {/* <AccountCircleIcon /> */}
           </div>
