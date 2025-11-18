@@ -58,7 +58,7 @@ function Products() {
     {
       field: "title",
       headerName: "Title",
-      width: 250,
+      width: 350,
       renderCell: (product) => {
         return (
           <>
@@ -78,7 +78,7 @@ function Products() {
     {
       field: "price",
       headerName: "Price",
-      width: 120,
+      width: 320,
     },
     {
       field: "actions",
@@ -112,7 +112,7 @@ function Products() {
           <div className="size-6 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
         </div>
       ) : (
-        <div className="flex-[1] h-fit mt-4 flex justify-start">
+        <div className="flex-[4] h-fit mt-4 flex justify-start">
           <DataGrid
             rows={productData.map((item, index) => ({
               ...item,

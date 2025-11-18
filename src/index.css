@@ -12,4 +12,8 @@
   * {
     font-family: "Roboto", sans-serif;
   }
+
+  .blue-sidebar {
+    background-color: rgb(251, 251, 255);
+  }
 }
